@@ -1,3 +1,5 @@
+package src;
+
 public class ArrayExample {
 
     public static void main(String argv[]) {
