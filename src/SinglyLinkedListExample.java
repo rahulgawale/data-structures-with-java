@@ -2,6 +2,7 @@ package src;
 
 public class SinglyLinkedListExample {
     public static void main(String[] args) {
+
         System.out.println("First java program!");
         SinglyLinkedList<Integer> list = new SinglyLinkedList<Integer>();
         list.add(1);
@@ -32,9 +33,28 @@ public class SinglyLinkedListExample {
         }
         System.out.println("");
 
-        System.out.println("remove 2 : " + list.remove(2));
+        list.addFirst(10);
+        System.out.println("list : " + list.toString());
+        list.insertAt(1, 20);
+        System.out.println("list : " + list.toString());
+        list.insertAt(0, 30);
+        System.out.println("list : " + list.toString());
+        list.insertAt(4, 40);
+        System.out.println("list : " + list.toString());
+
+        System.out.println("remove last : " + list.removeLast());
         System.out.println("remove 4 : " + list.remove(4));
         System.out.println("remove 1 : " + list.remove(1));
         System.out.println("list : " + list.toString());
+
+        SinglyLinkedList<Integer> list2 = new SinglyLinkedList<Integer>();
+        list2.add(12);
+        list2.add(13);
+        list2.add(14);
+        list2.add(15);
+        list2.add(16);
+        list2.removeAt(3);
+        list2.removeFirst();
+        System.out.println("list2 : " + list2.toString());
     }
 }
