@@ -212,4 +212,20 @@ public class SinglyLinkedList<T> implements Iterable<T> {
         value += traverseHead.data + "]}";
         return value;
     }
+
+    public void reverse() {
+        if (size() < 2) {
+            return;
+        }
+        tail = head;
+        Node traverseHead = head;
+        Node previousNode = null;
+        while (traverseHead != null) {
+            Node next = traverseHead.next;
+            traverseHead.next = previousNode;
+            previousNode = traverseHead;
+            traverseHead = next;
+        }
+        head = previousNode;
+    }
 }

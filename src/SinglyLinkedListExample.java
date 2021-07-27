@@ -56,5 +56,7 @@ public class SinglyLinkedListExample {
         list2.removeAt(3);
         list2.removeFirst();
         System.out.println("list2 : " + list2.toString());
+        list2.reverse();
+        System.out.println("list2 : " + list2.toString());
     }
 }
