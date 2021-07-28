@@ -53,9 +53,11 @@ public class SinglyLinkedListExample {
         list2.add(14);
         list2.add(15);
         list2.add(16);
-        list2.removeAt(3);
-        list2.removeFirst();
+        list2.insertAt(4, 17);
         System.out.println("list2 : " + list2.toString());
+        list2.removeAt(3);
+        System.out.println("list2 : " + list2.toString());
+        list2.removeFirst();
         list2.reverse();
         System.out.println("list2 : " + list2.toString());
     }
