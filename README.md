@@ -16,4 +16,10 @@ I have added a class for each data structure and related example with main metho
 1. DoublyLinkedListExample - Examples of Doubly LinkedList with `DoublyLinkedList.java`.
 
 1. SinglyLinkedList - Singly linked list implementation.
-1. SinglyLinkedListExample -Example of Singly LinkedList with `SinglyLinkedList.java`.
+1. SinglyLinkedListExample -Examples of Singly LinkedList with `SinglyLinkedList.java`.
+
+1. Stack - Stack implementation using Standard LinkedList.
+1. StackExample - Examples of Stack with `Stack.java`
+
+1. QueueUsingStaticArray - Stack implementation using static array.
+1. QueueUsingStaticArrayExample - Examples of Stack with `QueueUsingStaticArray.java`
