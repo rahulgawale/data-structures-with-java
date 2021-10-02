@@ -1,4 +1,4 @@
-package src;
+package src.com.rsg.dataStructures;
 
 public class QueueUsingStaticArrayExample {
     public static void main(String[] args) {

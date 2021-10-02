@@ -1,11 +1,11 @@
-package src;
+package src.com.rsg.dataStructures;
 
 import java.util.Iterator;
 
-public class DoublyLinkedList<T> implements Iterable<T> {
+public class SinglyLinkedList<T> implements Iterable<T> {
     private class Node {
         T data;
-        Node next, prev;
+        Node next;
 
         Node(T data) {
             this.data = data;
@@ -36,7 +36,6 @@ public class DoublyLinkedList<T> implements Iterable<T> {
             tail = newNode;
         } else {
             tail.next = newNode;
-            newNode.prev = tail;
             tail = newNode;
         }
         size++;
@@ -48,7 +47,6 @@ public class DoublyLinkedList<T> implements Iterable<T> {
         } else {
             Node newNode = new Node(data);
             newNode.next = head;
-            head.prev = newNode;
             head = newNode;
         }
         size++;
@@ -65,20 +63,19 @@ public class DoublyLinkedList<T> implements Iterable<T> {
         if (index == 0) {
             Node newNode = new Node(data);
             newNode.next = head;
-            head.prev = newNode;
             head = newNode;
         } else {
             Node traverseHead = head;
+            Node previousNode = null;
             int currentIndex = 0;
             while (currentIndex < index) {
+                previousNode = traverseHead;
                 traverseHead = traverseHead.next;
                 currentIndex++;
             }
             Node newNode = new Node(data);
             newNode.next = traverseHead;
-            newNode.prev = traverseHead.prev;
-            traverseHead.prev.next = newNode;
-            traverseHead.prev = newNode;
+            previousNode.next = newNode;
         }
         size++;
     }
@@ -89,20 +86,23 @@ public class DoublyLinkedList<T> implements Iterable<T> {
         }
 
         Node traverseHead = head;
+        Node previousNode = null;
+
         while (traverseHead != null) {
             if (traverseHead.data == data) {
-                if (traverseHead.prev == null) {
+                if (previousNode == null) {
                     head = traverseHead.next;
                 } else {
-                    traverseHead.prev.next = traverseHead.next;
+                    previousNode.next = traverseHead.next;
                 }
                 if (traverseHead == tail) {
-                    tail = traverseHead.prev;
+                    tail = previousNode;
                 }
                 traverseHead = null;
                 --size;
                 return true;
             }
+            previousNode = traverseHead;
             traverseHead = traverseHead.next;
         }
         return false;
@@ -119,7 +119,6 @@ public class DoublyLinkedList<T> implements Iterable<T> {
             size = 0;
         } else {
             head = head.next;
-            head.prev = null;
             --size;
         }
         return data;
@@ -133,7 +132,11 @@ public class DoublyLinkedList<T> implements Iterable<T> {
             head = tail = null;
             size = 0;
         } else {
-            tail = tail.prev;
+            Node traverseHead = head;
+            while (traverseHead.next != null) {
+                traverseHead = traverseHead.next;
+            }
+            tail = traverseHead;
             tail.next = null;
             --size;
         }
@@ -151,18 +154,15 @@ public class DoublyLinkedList<T> implements Iterable<T> {
             return removeFirst();
         } else {
             Node traverseHead = head;
+            Node previousNode = null;
             int currentIndex = 0;
             while (currentIndex < index) {
+                previousNode = traverseHead;
                 traverseHead = traverseHead.next;
                 currentIndex++;
             }
             T data = traverseHead.data;
-            traverseHead.prev.next = traverseHead.next;
-            if (traverseHead.next == null) {
-                tail = traverseHead.prev;
-            } else {
-                traverseHead.next.prev = traverseHead.prev;
-            }
+            previousNode.next = traverseHead.next;
             --size;
             return data;
         }
@@ -211,34 +211,19 @@ public class DoublyLinkedList<T> implements Iterable<T> {
         return value;
     }
 
-    public String toStringReverse() {
-        if (isEmpty()) {
-            return "{size:" + size + ", head:" + head + ", tail:" + tail + ", data:[]}";
-        }
-
-        Node traverseHead = tail;
-        String value = "{size:" + size + ", head:" + head + ", tail:" + tail + ", data:[";
-        while (traverseHead.prev != null) {
-            value += traverseHead.data + ", ";
-            traverseHead = traverseHead.prev;
-        }
-        value += traverseHead.data + "]}";
-        return value;
-    }
-
     public void reverse() {
         if (size() < 2) {
             return;
         }
+        tail = head;
         Node traverseHead = head;
-        head = tail;
-        tail = traverseHead;
-
+        Node previousNode = null;
         while (traverseHead != null) {
             Node next = traverseHead.next;
-            traverseHead.next = traverseHead.prev;
-            traverseHead.prev = next;
+            traverseHead.next = previousNode;
+            previousNode = traverseHead;
             traverseHead = next;
         }
+        head = previousNode;
     }
 }

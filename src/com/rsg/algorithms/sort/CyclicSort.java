@@ -3,7 +3,7 @@
 Input must be an array of integers 1 to N 
 */
 
-package src.algorithms.sort;
+package src.com.rsg.algorithms.sort;
 
 import java.util.Arrays;
 

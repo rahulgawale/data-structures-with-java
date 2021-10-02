@@ -1,4 +1,4 @@
-package src;
+package src.com.rsg.dataStructures;
 
 /* Dynamic Array Implementation Using Java */
 import java.util.Iterator;
